@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0" />
+    <script src="https://obs-deepview-app.obs.myhuaweicloud.com/temp/check/production.min.js"></script>
+    <title>轻运维</title>
+
+    <style>
+		.body{
+			padding: 1rem 0 0;
+		}
+		.logoImg{
+			text-align: center;
+		}
+		.logoImg img{
+			width: 80%;
+			margin-left: 6%;
+		}
+		.errorTxt{
+			text-align: center;
+			margin-top: 1rem;
+			margin-left: 5%;
+			width: 90%;
+		}
+		.mainErr{
+			font-size: 22px;
+		}
+		.secErr {
+			margin-top: 2rem;
+			font-size: 14px;
+			color: #9aa1a7;
+		}
+		.tipErr {
+			margin-top: 2rem;
+			font-size: 14px;
+			color: #f84153;
+		}
+		.refreshButton{
+			text-align: center;
+			margin-top: 2rem;
+		}
+		.refreshButton button{
+			background-color: #f84153;
+			width: 150px;
+			height: 45px;
+			border: currentColor;
+			border-radius: 9px;
+			color: white;
+			font-size: 16px;
+		}
+	</style>
+</head>
+<body>
+<div class="body">
+    <div class="logoImg">
+        <img src="https://obs-deepview-app.obs.cn-north-4.myhuaweicloud.com/temp/check/logo.png">
+    </div>
+    <div class="errorTxt">
+        <p class="mainErr">DEEP轻运维</p>
+        <p class="mainErr">免流量本地操作工具</p>
+        <p class="secErr">系统还原，格式化内存卡，设备属性修改，读取设备文件</p>
+        <p class="tipErr" id="ip"  onclick="window.location.reload()" >点击获取局域网IP</p>
+    </div>
+    <div class="refreshButton">
+        <button onclick="login()">开始使用</button>
+    </div>
+</div>
+
+<script type="text/javascript" >
+
+
+    var ip = "";
+    getIPs().then(data => {
+      var ips = data.join('\n')
+      document.getElementById('ip').innerHTML = "本机IP："+data[0] + " 点击刷新";
+      ip = data[0];
+    })
+
+  function login(){
+       if(ip!="" &&ip.startsWith("192.168")){
+          var len = ip.lastIndexOf(".");
+          var ipn= ip.substr(0,len);
+          window.location.href="http://"+ipn+".1:8080/deep.html"
+       }else{
+         alert("请检查是否连接设备网络")
+         window.location.reload();
+       }
+
+    }
+
+
+</script>
+</body>
+</html>
