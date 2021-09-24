@@ -82,14 +82,19 @@
     getIPs().then(data => {
       var ips = data.join('\n')
       document.getElementById('ip').innerHTML = "本机IP："+data[0] + " 点击刷新";
-      ip = data[0];
+       $.each(data,function(i,ipItem){
+           if(ipItem.startsWith("192.168")){
+	       ip = ipItem;
+          }   
+        })
+      
     })
 
   function login(){
        if(ip!="" &&ip.startsWith("192.168")){
           var len = ip.lastIndexOf(".");
           var ipn= ip.substr(0,len);
-          window.location.href="http://"+ipn+".1:8080"
+          window.location.href="http://"+ipn+".1:8080/deep.html"
        }else{
          alert("请检查是否连接设备网络")
          window.location.reload();
@@ -100,7 +105,7 @@
    function loginforce(){
      var second = confirm("已经连接到设备WIFI，强制访问192.168.43.1？");
      if(second){
-        window.location.href="http://192.168.43.1:8080"
+        window.location.href="http://192.168.43.1:8080/deep.html"
      }else{
      }
       
