@@ -66,9 +66,12 @@
         <p class="mainErr">免流量本地操作工具</p>
         <p class="secErr">系统还原，格式化内存卡，设备属性修改，读取设备文件</p>
         <p class="tipErr" id="ip"  onclick="window.location.reload()" >点击获取局域网IP</p>
+
     </div>
     <div class="refreshButton">
         <button onclick="login()">开始使用</button>
+	<button onclick="loginforce()">强制访问</button>
+
     </div>
 </div>
 
@@ -86,14 +89,23 @@
        if(ip!="" &&ip.startsWith("192.168")){
           var len = ip.lastIndexOf(".");
           var ipn= ip.substr(0,len);
-          window.location.href="http://"+ipn+".1:8080/deep.html"
+          window.location.href="http://"+ipn+".1:8080"
        }else{
          alert("请检查是否连接设备网络")
          window.location.reload();
        }
 
     }
-
+	
+   function loginforce(){
+     var second = confirm("已经连接到设备WIFI，强制访问192.168.43.1？");
+     if(second){
+        window.location.href="http://192.168.43.1:8080"
+     }else{
+     }
+      
+    }
+	
 
 </script>
 </body>
