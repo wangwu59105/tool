@@ -72,7 +72,7 @@
         <p class="mainErr">DEEP轻运维</p>
         <p class="mainErr">免流量本地操作工具</p>
         <p class="secErr">系统还原，格式化内存卡，设备属性修改，读取设备文件</p>
-        <p class="tipErr" id="ip"  onclick="setIP();" >192.168.43.1</p>
+        <p class="tipErr" id="ip"  onclick="setIP();" >IP: 192.168.43.1</p>
 
     </div>
     <div class="refreshButton">
@@ -101,8 +101,8 @@
    function setIP(){
      var ipUser = prompt("请输入连接设备wifi的IP",ip);
      if(ipUser!=null && ip!="" && ip.startsWith("192.")){
-	  document.getElementById("ip").innerHTML = ipUser;
-      ip = ipUser;  
+	  document.getElementById("ip").innerHTML ="IP: "+ ipUser;
+         ip = ipUser;  
 	 }
     }
 	
