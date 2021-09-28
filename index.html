@@ -101,10 +101,26 @@
    function setIP(){
      var ipUser = prompt("请输入连接设备wifi的IP",ip);
      if(ipUser!=null && ip!="" && ip.startsWith("192.")){
+	  if(!f_check_IP(ipUser)){
+	      alert("热点IP地址填写错误")  
+              return;
+	  }   
 	  document.getElementById("ip").innerHTML ="IP: "+ ipUser;
-         ip = ipUser;  
+          ip = ipUser;  
 	 }
     }
+	
+
+ function f_check_IP(ip)    { 
+   var re=/^(\d+)\.(\d+)\.(\d+)\.(\d+)$/;//正则表达式   
+   if(re.test(ip))   
+   {   
+       if( RegExp.$1<256 && RegExp.$2<256 && RegExp.$3<256 && RegExp.$4<256) 
+       return true;   
+   }   
+   return false;    
+}
+	
 	
    function showImage(){
         window.location.href="./ip.jpg"
